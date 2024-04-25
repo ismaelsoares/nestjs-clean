@@ -17,7 +17,7 @@ const createAccountBodySchema = z.object({
   password: z.string(),
 });
 
-type createAccountBodySchema = z.infer<typeof createAccountBodySchema>;
+type CreateAccountBodySchema = z.infer<typeof createAccountBodySchema>;
 @Controller("/accounts")
 export class CreateAccountController {
   constructor(private prisma: PrismaService) {}
@@ -25,7 +25,7 @@ export class CreateAccountController {
   @Post()
   @HttpCode(201)
   @UsePipes(new ZodValidationPipe(createAccountBodySchema)) //Forçar o código de sucesso seja 201
-  async handle(@Body() body: createAccountBodySchema) {
+  async handle(@Body() body: CreateAccountBodySchema) {
     console.log(body);
     const { name, email, password } = body;
 
